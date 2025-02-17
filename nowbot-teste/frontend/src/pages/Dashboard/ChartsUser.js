@@ -64,13 +64,12 @@ export const options = {
             font: {
                 size: 20,
                 weight: "bold"
-
             },
         }
     },
 };
 
-export const ChatsUser = () => {
+export const ChartsUser = () => {
     // const classes = useStyles();
     const [initialDate, setInitialDate] = useState(new Date());
     const [finalDate, setFinalDate] = useState(new Date());
@@ -83,7 +82,6 @@ export const ChatsUser = () => {
     }, []);
 
     const dataCharts = {
-
         labels: ticketsData && ticketsData?.data.length > 0 && ticketsData?.data.map((item) => item.nome),
         datasets: [
             {
@@ -92,13 +90,11 @@ export const ChatsUser = () => {
                 }),
                 backgroundColor: '#2DDD7F',
             },
-
         ],
     };
 
     const handleGetTicketsInformation = async () => {
         try {
-
             const { data } = await api.get(`/dashboard/ticketsUsers?initialDate=${format(initialDate, 'yyyy-MM-dd')}&finalDate=${format(finalDate, 'yyyy-MM-dd')}&companyId=${companyId}`);
             setTicketsData(data);
         } catch (error) {
@@ -113,14 +109,12 @@ export const ChatsUser = () => {
             </Typography>
 
             <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ my: 2, }} >
-
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
                     <DatePicker
                         value={initialDate}
                         onChange={(newValue) => { setInitialDate(newValue) }}
                         label={i18n.t("dashboard.charts.user.start")}
                         renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
-
                     />
                 </LocalizationProvider>
 
@@ -136,7 +130,6 @@ export const ChatsUser = () => {
                 <Button className="buttonHover" onClick={handleGetTicketsInformation} variant='contained'>
                     {i18n.t("dashboard.charts.user.filter")}
                 </Button>
-
             </Stack>
             <Bar options={options} data={dataCharts} style={{ maxWidth: '100%', maxHeight: '280px', }} />
         </>

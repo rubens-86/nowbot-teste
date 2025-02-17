@@ -22,8 +22,8 @@ export const redisConfig = {
   showFriendlyErrorStack: true,
   enableOfflineQueue: true,
   connectTimeout: 10000,
-  family: 4, // Força IPv4
+  family: 4,
   db: 0,
   keepAlive: 10000,
-  tls: null // Desabilita TLS para conexão local
-};
+  tls: null
+}; 

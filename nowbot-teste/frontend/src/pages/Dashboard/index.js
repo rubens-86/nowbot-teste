@@ -29,7 +29,7 @@ import { isArray } from "lodash";
 
 import useDashboard from "../../hooks/useDashboard";
 import useContacts from "../../hooks/useContacts";
-import { ChatsUser } from "./ChartsUser"
+import { ChartsUser } from "./ChartsUser";
 
 import { isEmpty } from "lodash";
 import moment from "moment";
@@ -674,7 +674,7 @@ const Dashboard = () => {
           {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
           <Grid item xs={12}>
             <Paper className={classes.fixedHeightPaper2}>
-              <ChatsUser />
+              <ChartsUser />
             </Paper>
           </Grid>
 

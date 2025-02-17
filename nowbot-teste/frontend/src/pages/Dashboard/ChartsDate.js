@@ -52,14 +52,12 @@ export const options = {
             font: {
                 size: 20,
                 weight: "bold"
-
             },
         }
     },
 };
 
 export const ChartsDate = () => {
-
     const [initialDate, setInitialDate] = useState(new Date());
     const [finalDate, setFinalDate] = useState(new Date());
     const [ticketsData, setTicketsData] = useState({ data: [], count: 0 });
@@ -71,7 +69,6 @@ export const ChartsDate = () => {
     }, []);
 
     const dataCharts = {
-
         labels: ticketsData && ticketsData?.data.length > 0 && ticketsData?.data.map((item) => (item.hasOwnProperty('horario') ? `Das ${item.horario}:00 as ${item.horario}:59` : item.data)),
         datasets: [
             {
