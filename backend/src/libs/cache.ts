@@ -1,13 +1,15 @@
 import Redis from "ioredis";
 import { REDIS_URI_CONNECTION, redisConfig } from "../config/redis";
-import util from "util";
 import * as crypto from "crypto";
 import { logger } from "../utils/logger";
 
-const redis = new Redis(REDIS_URI_CONNECTION, redisConfig);
+const redis = new Redis(redisConfig);
 
 redis.on('error', (err) => {
-  logger.error('Redis Client Error:', err);
+  logger.error('Redis Client Error:', err.message);
+  if (err.message.includes('NOAUTH')) {
+    logger.error('Erro de autenticação no Redis - Verificando credenciais...');
+  }
 });
 
 redis.on('connect', () => {
@@ -16,6 +18,10 @@ redis.on('connect', () => {
 
 redis.on('ready', () => {
   logger.info('Redis Client Ready');
+});
+
+redis.on('reconnecting', () => {
+  logger.info('Reconectando ao Redis...');
 });
 
 function encryptParams(params: any) {
