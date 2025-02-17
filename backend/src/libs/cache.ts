@@ -1,23 +1,23 @@
 import Redis from "ioredis";
-import { REDIS_URI_CONNECTION, redisConfig } from "../config/redis";
+import redisConfig from "../config/redis";
 import * as crypto from "crypto";
 import { logger } from "../utils/logger";
 
 const redis = new Redis(redisConfig);
 
 redis.on('error', (err) => {
-  logger.error('Redis Client Error:', err.message);
+  logger.error('Erro na conexão com Redis:', err.message);
   if (err.message.includes('NOAUTH')) {
     logger.error('Erro de autenticação no Redis - Verificando credenciais...');
   }
 });
 
 redis.on('connect', () => {
-  logger.info('Redis Client Connected');
+  logger.info('Conectado ao Redis com sucesso');
 });
 
 redis.on('ready', () => {
-  logger.info('Redis Client Ready');
+  logger.info('Cliente Redis pronto para uso');
 });
 
 redis.on('reconnecting', () => {
